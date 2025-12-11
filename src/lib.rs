@@ -26,6 +26,7 @@ pub mod prompts;
 pub mod types;
 pub mod gay_colors;
 pub mod gay_loom;
+pub mod gay_bridge;
 pub mod xenomodern_tui;
 
 // Re-exports

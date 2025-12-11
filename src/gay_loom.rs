@@ -349,6 +349,19 @@ impl ExpanderHypergraph {
         self.hyperedges.push(Hyperedge { vertices, color, weight });
     }
     
+    /// Get neighbors of a vertex (all vertices sharing a hyperedge)
+    pub fn neighbors(&self, vertex: usize) -> Vec<usize> {
+        let empty = vec![];
+        let incident = self.incidence.get(&vertex).unwrap_or(&empty);
+        let mut neighbors: Vec<usize> = incident.iter()
+            .flat_map(|&edge_idx| self.hyperedges[edge_idx].vertices.iter().copied())
+            .filter(|&v| v != vertex)
+            .collect();
+        neighbors.sort();
+        neighbors.dedup();
+        neighbors
+    }
+    
     /// Random walk step with Gay.jl determinism
     pub fn walk_step(&self, current: usize, rng: &mut GayRNG) -> (usize, ZXColor) {
         let empty = vec![];

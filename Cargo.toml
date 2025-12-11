@@ -1,0 +1,53 @@
+[package]
+name = "signal-mcp"
+version = "0.1.0"
+edition = "2021"
+authors = ["Barton <barton@infinity.industries>"]
+description = "Model Context Protocol server for Signal Protocol with formal verification"
+license = "AGPL-3.0-only"
+
+[dependencies]
+# MCP SDK
+rmcp = { version = "0.8.0", features = ["server", "transport-io"] }
+rmcp-macros = "0.8.0"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+tokio-util = "0.7"
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+schemars = "1.0"
+
+# Signal Protocol (placeholder - actual crate may differ)
+# libsignal-protocol = "0.1"
+
+# Error handling
+anyhow = "1"
+thiserror = "1"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+proptest = "1"  # Property-based testing for verification
+
+[features]
+default = ["stdio"]
+stdio = []
+http-sse = []
+oauth = []
+verification = []  # Enable Coq proof obligations
+
+[[example]]
+name = "signal-server-stdio"
+path = "examples/stdio.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+
+# Seed 1069 balanced ternary: [+1, -1, -1, +1, +1, +1, +1]

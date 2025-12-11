@@ -32,6 +32,7 @@ pub mod photonic;
 pub mod sparse;
 pub mod teleport;
 pub mod symmetric;
+pub mod spivak;
 pub mod xenomodern_tui;
 
 // Re-exports

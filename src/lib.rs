@@ -31,6 +31,7 @@ pub mod xenomind;
 pub mod photonic;
 pub mod sparse;
 pub mod teleport;
+pub mod symmetric;
 pub mod xenomodern_tui;
 
 // Re-exports

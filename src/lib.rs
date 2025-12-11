@@ -28,6 +28,7 @@ pub mod gay_colors;
 pub mod gay_loom;
 pub mod gay_bridge;
 pub mod xenomind;
+pub mod photonic;
 pub mod xenomodern_tui;
 
 // Re-exports
